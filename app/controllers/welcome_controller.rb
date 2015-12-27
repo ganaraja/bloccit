@@ -3,6 +3,7 @@ class WelcomeController < ApplicationController
   end
 
   def about
+    @myfacebook='https://www.facebook.com/ganaraja.ng'
   end
 
   def contact
