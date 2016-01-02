@@ -20,3 +20,10 @@ puts "Seed finished"
 
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+
+puts "Creating unique..."
+
+Post.find_or_create_by!(
+ title: "I am Unique title",
+ body: "I am having Unique body"
+            )
