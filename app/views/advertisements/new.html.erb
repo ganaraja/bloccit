@@ -1,0 +1,33 @@
+<h1>Advertisements#new</h1>
+<p>Find me in app/views/advertisements/new.html.erb</p>
+<h1>New Advertisement</h1>
+
+<div class="row">
+  <div class="col-md-4">
+    <p>Guidelines for advertisements</p>
+    <ul>
+      <li>Advertising on this bloc is costly</li>
+      <li>No Adult content allowed</li>
+      <li>Anybody violating rules will be banned and no refund allowed</li>
+    </ul>
+  </div>
+  <div class="col-md-8">
+    <%= form_for @advertisement do |f| %>
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: 'form-control', placeholder: "Enter advertisement title" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :copy %>
+        <%= f.text_area :copy, rows: 10, class: 'form-control', placeholder: "Enter advertisement body" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :price %>
+        <%= f.text_area :price, class: 'form-control', placeholder: "Enter advertisement price" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "Save", class: 'btn btn-success' %>
+      </div>
+    <% end %>
+  </div>
+</div>
