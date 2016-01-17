@@ -119,7 +119,7 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe "DELETE destroy" do
-    let(:my_post){Post.create!(title: RandomData.random_sentence,body: random_paragraph)}     
+    let(:my_post){Post.create!(title: RandomData.random_sentence,body: random_paragraph)}
     it "deletes the post" do
       delete :destroy, {id: my_post.id}
 
