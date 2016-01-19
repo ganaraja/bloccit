@@ -12,11 +12,12 @@
  # #2
  group :development do
    gem 'sqlite3'
-   gem 'pry-rails'   
+   gem 'pry-rails'
  end
 
  group :test do
    gem 'rspec-rails', '~>3.0'
+   gem 'shoulda'
  end
  # Use SCSS for stylesheets
  gem 'sass-rails', '~> 5.0'
