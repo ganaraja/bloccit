@@ -10,9 +10,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new
-    @post.title = params[:post][:title]
-    @post.body = params[:post][:body]
+    @post = Post.create(post_params)
 
     @topic = Topic.find(params[:topic_id])
     @post.topic = @topic
@@ -56,4 +54,8 @@ class PostsController < ApplicationController
    end
  end
 
+ private
+   def post_params
+     params[:post].permit[:title]
+   end
 end
