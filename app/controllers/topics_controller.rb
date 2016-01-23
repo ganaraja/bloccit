@@ -33,10 +33,10 @@ class TopicsController < ApplicationController
 
   def update
     @topic = Topic.find(params[:id])
-#    @topic = Topic.update(topic_params)
-    @topic.name = params[:topic][:name]
-    @topic.description = params[:topic][:description]
-    @topic.public = params[:topic][:public]
+    @topic.update(topic_params)
+#    @topic.name = params[:topic][:name]
+#    @topic.description = params[:topic][:description]
+#    @topic.public = params[:topic][:public]
 
     if @topic.save
        flash[:notice] = "Topic was updated."
@@ -60,6 +60,6 @@ class TopicsController < ApplicationController
   end
 private
   def topic_params
-    params[:topic].permit[:name]
+    params[:topic].permit(:name, :description, :public)
   end
 end
