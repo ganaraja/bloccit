@@ -24,6 +24,12 @@ RSpec.describe User, type: :model do
     it "should respond to email" do
       expect(user).to respond_to(:email)
     end
+
+    it "should have proper first name and last name" do
+      user.name = "gana raja"
+      user.save
+      expect(user.name).to eq("Gana Raja")
+    end
   end
 
   describe "invalid user" do
@@ -43,5 +49,5 @@ RSpec.describe User, type: :model do
       expect(user_with_invalid_email_format).to_not be_valid
     end
 
-  end    
+  end
 end
