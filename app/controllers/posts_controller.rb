@@ -30,8 +30,8 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.title = params[:post][:title]
-    @post.body = params[:post][:body]
+
+    @post.update(post_params)
 
     if @post.save
       flash[:notice] = "Post was updated."
@@ -56,7 +56,6 @@ class PostsController < ApplicationController
 
  private
    def post_params
-     params[:post].permit[:title]
+     params[:post].permit(:title,:body)
    end
-
 end
