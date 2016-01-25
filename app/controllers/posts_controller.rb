@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+   before_action :require_sign_in, except: :show
 
   def show
     @post = Post.find(params[:id])
@@ -10,14 +11,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.create(post_params)
-
     @topic = Topic.find(params[:topic_id])
-    @post.topic = @topic
+    @post = @topic.posts.build(post_params)
+
+    @post.user = current_user
 
     if @post.save
       flash[:notice] = "Post was saved"
-      redirect_to [@topic, @post]
+      redirect_to new_session_path
     else
       flash.now[:alert] = "There was an error saving post. Please try again"
       render :new
@@ -31,11 +32,11 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
 
-    @post.update(post_params)
+    @post.assign_attributes(post_params)
 
     if @post.save
       flash[:notice] = "Post was updated."
-      redirect_to [@post.topic, @post]
+      redirect_to new_session_path
     else
       flash.now[:alert] = "There was an error saving the post. Please try again."
       render :edit
@@ -56,6 +57,6 @@ class PostsController < ApplicationController
 
  private
    def post_params
-     params[:post].permit(:title,:body)
+     params.require(:post).permit(:title,:body)
    end
 end
