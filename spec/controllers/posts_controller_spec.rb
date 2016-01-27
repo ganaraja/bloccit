@@ -91,7 +91,7 @@ RSpec.describe PostsController, type: :controller do
      describe "GET new" do
        it "returns http redirect" do
          get :new, topic_id: my_topic.id
-         expect(response).to redirect_to(my_topic, Post.last)
+         expect(response).to redirect_to(new_session_path)
        end
      end
 
@@ -105,7 +105,7 @@ RSpec.describe PostsController, type: :controller do
      describe "GET edit" do
        it "returns http redirect" do
          get :edit, topic_id: my_topic.id, id: my_post.id
-         expect(response).to redirect_to(my_topic, my_post)
+         expect(response).to redirect_to(new_session_path)
        end
      end
 

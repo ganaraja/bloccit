@@ -18,7 +18,7 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:notice] = "Post was saved"
-      redirect_to new_session_path
+      redirect_to [@topic, @post]
     else
       flash.now[:alert] = "There was an error saving post. Please try again"
       render :new
@@ -36,7 +36,7 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:notice] = "Post was updated."
-      redirect_to new_session_path
+      redirect_to [@post.topic, @post]
     else
       flash.now[:alert] = "There was an error saving the post. Please try again."
       render :edit
