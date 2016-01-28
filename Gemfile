@@ -33,3 +33,5 @@
  gem 'bootstrap-sass'
 
  gem 'bcrypt'
+
+ gem 'byebug'
