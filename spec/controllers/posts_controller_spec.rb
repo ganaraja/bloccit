@@ -91,21 +91,21 @@ RSpec.describe PostsController, type: :controller do
      describe "GET new" do
        it "returns http redirect" do
          get :new, topic_id: my_topic.id
-         expect(response).to redirect_to(new_session_path)
+         expect(response).to render_template :new
        end
      end
 
      describe "POST create" do
        it "returns http redirect" do
          post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
-         expect(response).to redirect_to(new_session_path)
+         expect(response).to redirect_to([my_topic, Post.last])
        end
      end
 
      describe "GET edit" do
-       it "returns http redirect" do
+       it "renders edit" do
          get :edit, topic_id: my_topic.id, id: my_post.id
-         expect(response).to redirect_to(new_session_path)
+         expect(response).to render_template :edit
        end
      end
 
@@ -115,16 +115,21 @@ RSpec.describe PostsController, type: :controller do
          new_body = RandomData.random_paragraph
 
          put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_title, body: new_body}
-         expect(response).to redirect_to(new_session_path)
+         expect(response).to redirect_to([my_topic,my_post])
        end
      end
 
      describe "DELETE destroy" do
-       it "returns http redirect" do
+       it "deletes the post" do
          delete :destroy, topic_id: my_topic.id, id: my_post.id
-         expect(response).to have_http_status(:redirect)
+         count = Post.where({id: my_post.id}).size
+         expect(count).to eq 0
        end
-     end
+
+       it "redirects to topic show" do
+         delete :destroy, topic_id: my_topic.id, id: my_post.id
+         expect(response).to redirect_to my_topic
+       end     end
   end
 
 end
