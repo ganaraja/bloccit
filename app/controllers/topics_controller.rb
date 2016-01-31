@@ -66,8 +66,10 @@ private
       redirect_to topics_path
     end
   end
-  
+
   def user_moderator?
-       current_user.moderator?
+    unless current_user.moderator? || current_user.admin?
+      redirect_to topics_path
+    end
   end
 end
