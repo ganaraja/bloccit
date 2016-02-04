@@ -3,7 +3,7 @@ include RandomData
 include SessionsHelper
 
 RSpec.describe TopicsController, type: :controller do
-  let (:my_topic) { Topic.create!(name:  RandomData.random_sentence, description:   RandomData.random_paragraph) }
+  let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description:   RandomData.random_paragraph) }
 
   context "guest" do
     describe "GET index" do
@@ -150,7 +150,7 @@ RSpec.describe TopicsController, type: :controller do
 
   context "moderator user" do
     before do
-      user = User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld", role: :moderator)
+      user = User.create!(name: "Bloccit User", email: "moderator@bloccit.com", password: "helloworld", role: :moderator)
       create_session(user)
     end
 

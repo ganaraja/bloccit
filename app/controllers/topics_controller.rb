@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
   before_action :require_sign_in, except: [:index, :show]
-  before_action :user_moderator?, except: [:index, :show, :edit, :update]
-  before_action :authorize_user, except: [:index, :show]
+  before_action :user_moderator?, only: [ :edit, :update]
+  before_action :authorize_user, except: [:index, :show, :edit, :update]
 
 
   def index
@@ -68,8 +68,7 @@ private
   end
 
   def user_moderator?
-    unless current_user.moderator? || current_user.admin?
-      redirect_to topics_path
-    end
+    return if current_user.moderator? || current_user.admin?
+    redirect_to topics_path
   end
 end
