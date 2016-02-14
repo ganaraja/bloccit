@@ -10,7 +10,9 @@ RSpec.describe Post, type: :model do
 
   it { is_expected.to have_many(:labelings) }
   it { is_expected.to have_many(:labels).through(:labelings) }
-  it { is_expected.to have_many(:comments) }
+  it { is_expected.to have_many(:commentings) }
+  it { is_expected.to have_many(:comments).through(:commentings) }
+  
   it { should belong_to(:topic) }
   it { should belong_to(:user) }
   it { should validate_presence_of(:title)}
