@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_action :authorize_user, only: [:destroy]
 
   def create
-    @topic = Topic.find(params[:topic_id])
+    @topic = Topic.find(params[:topic_id])if !params[:topic_id].nil?
 
     if params[:post_id].nil?
       comment = @topic.comments.new(comment_params)
