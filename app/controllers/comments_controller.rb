@@ -3,12 +3,11 @@ class CommentsController < ApplicationController
   before_action :authorize_user, only: [:destroy]
 
   def create
-    @topic = Topic.find(params[:topic_id])if !params[:topic_id].nil?
 
     if params[:post_id].nil?
+      @topic = Topic.find(params[:topic_id])
       comment = @topic.comments.new(comment_params)
       comment.user = current_user
-
       if comment.save
         flash[:notice] = "Comment saved successfully."
         redirect_to [@topic]
