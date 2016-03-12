@@ -35,3 +35,5 @@
  gem 'bcrypt'
 
  gem 'byebug'
+
+ gem 'figaro', '1.0'

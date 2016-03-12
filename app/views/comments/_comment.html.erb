@@ -1,4 +1,4 @@
-<div class="media">
+<%= content_tag :div, class: 'media', id: "comment-#{comment.id}" do %>
   <div class="media-body">
     <small>
       <% if user_is_authorized_for_comment?(comment) %>
@@ -8,4 +8,4 @@
     </small>
     <p><%= comment.body %></p>
   </div>
-</div>
+<% end %>
