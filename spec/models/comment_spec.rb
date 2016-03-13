@@ -2,9 +2,9 @@ require 'rails_helper'
 include RandomData
 
 RSpec.describe Comment, type: :model do
-  let(:topic) { create(:topic) }
-  let(:user) { create(:user) }
-  let(:post) { create(:post) }
+  let(:topic) { build(:topic) }
+  let(:user) { build(:user) }
+  let(:post) { build(:post) }
   let(:comment) { Comment.create!(body: 'Comment Body', post: post, user: user) }
 
 

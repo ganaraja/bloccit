@@ -4,10 +4,10 @@ include RandomData
 
 RSpec.describe Post, type: :model do
 
-  let(:topic) { create(:topic) }
-  let(:user) { create(:user) }
-  let(:post) { create(:post) }
-  
+  let(:topic) { build(:topic) }
+  let(:user) { build(:user) }
+  let(:post) { build(:post) }
+
   it { is_expected.to have_many(:labelings) }
   it { is_expected.to have_many(:labels).through(:labelings) }
   it { is_expected.to have_many(:comments) }

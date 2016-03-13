@@ -2,7 +2,7 @@ require 'rails_helper'
 include RandomData
 
 RSpec.describe Topic, type: :model do
-  let(:topic) { create(:topic) }
+  let(:topic) { build(:topic) }
 
   describe "attributes" do
     it {should have_many(:posts)}

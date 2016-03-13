@@ -3,10 +3,10 @@ include SessionsHelper
 include RandomData
 
 RSpec.describe VotesController, type: :controller do
-  let(:my_topic) { create(:topic) }
-  let(:my_user) { create(:user) }
-  let(:other_user) { create(:user) }
-  let(:user_post) { create(:post, topic: my_topic, user: other_user) }
+  let(:my_topic) { build(:topic) }
+  let(:my_user) { build(:user) }
+  let(:other_user) { build(:user) }
+  let(:user_post) { build(:post, topic: my_topic, user: other_user) }
   let(:my_vote) { Vote.create!(value: 1) }
 
   context "guest" do
