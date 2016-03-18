@@ -3,7 +3,7 @@ include RandomData
 include SessionsHelper
 
 RSpec.describe TopicsController, type: :controller do
-  let(:my_topic) { build(:topic) }
+  let(:my_topic) { create(:topic) }
 
   context "guest" do
     describe "GET index" do

@@ -6,7 +6,7 @@ RSpec.describe Post, type: :model do
 
   let(:topic) { build(:topic) }
   let(:user) { build(:user) }
-  let(:post) { build(:post) }
+  let(:post) { create(:post) }
 
   it { is_expected.to have_many(:labelings) }
   it { is_expected.to have_many(:labels).through(:labelings) }
