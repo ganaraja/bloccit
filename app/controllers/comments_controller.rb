@@ -22,11 +22,10 @@ class CommentsController < ApplicationController
 
     if comment.destroy
       flash[:notice] = "Comment was deleted."
-      redirect_to [@post.topic, @post]
     else
       flash[:alert] = "Comment couldn't be deleted. Try again."
-      redirect_to [@post.topic, @post]
     end
+    redirect_to [@post.topic, @post]
   end
 
   private
@@ -41,5 +40,5 @@ class CommentsController < ApplicationController
       flash[:alert] = "You do not have permission to delete a comment."
       redirect_to [comment.post.topic, comment.post]
     end
-  end  
+  end
 end
