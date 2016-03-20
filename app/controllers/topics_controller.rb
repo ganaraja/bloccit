@@ -3,11 +3,16 @@ class TopicsController < ApplicationController
   before_action :authorize_user, except: [:index, :show]
 
   def index
-    @topics = Topic.all
+    @topics = Topic.visible_to(current_user)
   end
 
   def show
     @topic = Topic.find(params[:id])
+
+    unless @topic.public || current_user
+      flash[:alert] = "You must be signed in to view private topics."
+      redirect_to new_session_path
+    end
   end
 
   def new
@@ -35,7 +40,7 @@ class TopicsController < ApplicationController
     @topic.assign_attributes(topic_params)
 
     if @topic.save
-       @topic.labels = Label.update_labels(params[:topic][:labels])      
+       @topic.labels = Label.update_labels(params[:topic][:labels])
        flash[:notice] = "Topic was updated."
       redirect_to @topic
     else
