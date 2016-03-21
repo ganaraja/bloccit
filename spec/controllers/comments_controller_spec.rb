@@ -7,8 +7,7 @@ RSpec.describe CommentsController, type: :controller do
   let(:my_user) { create(:user) }
   let(:other_user) { create(:user) }
   let(:my_post) { create(:post) }
-  let(:my_comment) { create(:comment)}
-  let(:my_user_comment) { my_user.create(:comment)}
+  let(:my_comment) { create(:comment, post: my_post, user: my_user)}
 
    context "guest" do
      describe "POST create" do
@@ -69,8 +68,8 @@ RSpec.describe CommentsController, type: :controller do
 
      describe "DELETE destroy" do
        it "deletes the comment" do
-         delete :destroy, post_id: my_user_comment.post_id, id: my_user_comment.id
-         count = Comment.where({id: my_user_comment.id}).count
+         delete :destroy, post_id: my_comment.post_id, id: my_comment.id
+         count = Comment.where({id: my_comment.id}).count
          expect(count).to eq 0
        end
 

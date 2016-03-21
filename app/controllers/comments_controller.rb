@@ -17,9 +17,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+
     @post = Post.find(params[:post_id])
     comment = @post.comments.find(params[:id])
-
     if comment.destroy
       flash[:notice] = "Comment was deleted."
     else
