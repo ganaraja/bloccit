@@ -30,6 +30,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:index, :show, :create, :update]
       resources :topics, only: [:index, :show, :edit, :new, :create, :update, :destroy ]
+      resources :topics do
+        resources :posts, only: [:index, :show, :edit, :new, :create, :update, :destroy ]
+      end
     end
   end
 
